@@ -10,21 +10,25 @@ try:
 
     inicio = datetime.now()
 
-    lista_arquivo = ['202601_NovoBolsaFamilia.csv', '202602_NovoBolsaFamilia.csv']
+    lista_arquivo = ['202601_NovoBolsaFamilia.csv',
+                     '202602_NovoBolsaFamilia.csv',
+                     '202603_NovoBolsaFamilia.csv',
+                     '202604_NovoBolsaFamilia.csv',
+                     ]
 
     df_bolsa_familia = None
 
     for arquivo in lista_arquivo:
         print(f'\nProcessando o arquivo: {arquivo}')
 
-        df = pd.read_csv(ENDERECO_DADOS + arquivo, sep=';', encoding='iso-8859-1')
+        df = pl.read_csv(ENDERECO_DADOS + arquivo, separator=';', encoding='iso-8859-1')
         print(df.head())
 
         if df_bolsa_familia is None:
             df_bolsa_familia = df
 
         else:
-            df_bolsa_familia = pd.concat([df_bolsa_familia, df])
+            df_bolsa_familia = pl.concat([df_bolsa_familia, df])
 
         del df
 
